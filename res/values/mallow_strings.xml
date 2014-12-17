@@ -1604,4 +1604,7 @@
     <string name="lock_screen_visualizer_settings_title">Music visualizer</string>
     <string name="lock_screen_visualizer_settings_summary">Customize the music visualizer</string>
 
+    <!-- Volume settings - Volume adjustment sound -->
+    <string name="volume_adjust_sounds_title">Volume adjustment sounds</string>
+
 </resources>
