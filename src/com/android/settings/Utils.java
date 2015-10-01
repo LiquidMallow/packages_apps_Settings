@@ -95,6 +95,7 @@ import com.android.settings.UserAdapter.UserDetails;
 import com.android.settings.dashboard.DashboardTile;
 import com.android.settingslib.applications.ApplicationsState;
 import com.android.settingslib.drawable.CircleFramedDrawable;
+import com.android.settings.bluetooth.BluetoothSettings;
 
 import java.io.File;
 import java.io.IOException;
@@ -704,7 +705,12 @@ public final class Utils {
             Bundle args, String titleResPackageName, int titleResId, CharSequence title,
             boolean isShortcut) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClass(context, SubSettings.class);
+        if (BluetoothSettings.class.getName().equals(fragmentName)) {
+            intent.setClass(context, SubSettings.BluetoothSubSettings.class);
+            intent.putExtra(SettingsActivity.EXTRA_SHOW_FRAGMENT_AS_SUBSETTING, true);
+         } else {
+             intent.setClass(context, SubSettings.class);
+         }
         intent.putExtra(SettingsActivity.EXTRA_SHOW_FRAGMENT, fragmentName);
         intent.putExtra(SettingsActivity.EXTRA_SHOW_FRAGMENT_ARGUMENTS, args);
         intent.putExtra(SettingsActivity.EXTRA_SHOW_FRAGMENT_TITLE_RES_PACKAGE_NAME,
