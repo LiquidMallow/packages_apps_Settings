@@ -130,7 +130,7 @@ public class CryptKeeperConfirm extends InstrumentedFragment {
             }
             int value = Settings.System.getInt(getContext().getContentResolver(),
                                                Settings.System.TEXT_SHOW_PASSWORD,
-                                               1);
+                                               0);
             utils.setVisiblePasswordEnabled(value != 0, UserHandle.USER_OWNER);
 
             Intent intent = new Intent(getActivity(), Blank.class);
