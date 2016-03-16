@@ -212,6 +212,8 @@
             <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
         </dashboard-tile>
 
+        <external-tiles />
+
     </dashboard-category>
 
     <!-- PERSONAL -->
