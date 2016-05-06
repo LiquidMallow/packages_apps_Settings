@@ -149,6 +149,8 @@
                 android:icon="@drawable/ic_settings_home"
                 />
 
+        <external-tiles />
+
         <!-- Display -->
         <dashboard-tile
                 android:id="@+id/display_settings"
@@ -211,8 +213,6 @@
                 android:fragment="com.android.settings.WirelessSettings">
             <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
         </dashboard-tile>
-
-        <external-tiles />
 
     </dashboard-category>
 
