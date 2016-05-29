@@ -262,10 +262,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(mDozeFragement);
             mDozeFragement = null;
         }
-		
-		mTapToWakePreference = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
+
+	mTapToWakePreference = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
         mTapToWakePreference.setOnPreferenceChangeListener(this);
-		
+
         if (!isTapToWakeAvailable(getResources())) {
             mTapToWakePreference.setEnabled(false);
         }

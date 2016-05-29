@@ -1563,7 +1563,7 @@
     <string name="media_scanner_on_boot_ask">Ask to scan (notification)</string>
     <string name="media_scanner_on_boot_disabled">Do not scan media</string>
 
-    <!-- Tiles animation style  -->
+    <!-- Tiles animation style -->
     <string name="quicksettings_tiles_category">Tile animation options</string>
     <string name="qs_tile_animation_style_title">Tiles animation style</string>
     <string name="qs_tile_animation_duration_title">Tiles animation duration</string>
@@ -1585,5 +1585,13 @@
     <string name="qs_set_animation_style">%1$s</string>
     <string name="qs_set_animation_duration">%1$s</string>
     <string name="qs_set_animation_interpolator">%1$s</string>
+
+    <!-- Screenshot and share -->
+    <string name="screenshot_crop_and_share_enable_title">Screenshot crop &amp; share</string>
+    <string name="keywords_screenshot_crop_and_share">screenshot crop share edit</string>
+    <string name="screenshot_crop_and_share_enable_summary">Show an editor window after taking a screenshot in order to do some operations like cropping, saving or sharing it</string>
+    <string name="category_screenshot">Screenshot</string>
+    <string name="pref_crop_behavior_title">Crop behavior</string>
+    <string name="pref_crop_behavior_summary">Always use the cropped image inside the cropping area, even if the apply button hasn\'t been pressed</string>
 
 </resources>
