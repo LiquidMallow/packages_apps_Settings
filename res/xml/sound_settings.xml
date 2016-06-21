@@ -22,7 +22,7 @@
         android:key="category_wakeup_options"
         android:title="@string/wakeup_options_title" >
 
-	<PreferenceScreen
+	    <PreferenceScreen
             android:key="volume_steps"
             android:title="@string/volume_steps_title"
             android:fragment="com.android.settings.mallow.fragments.VolumeSteps" />
@@ -34,6 +34,28 @@
             settings:min="0"
             settings:unitsLeft=""
             settings:unitsRight="" />
+
+	    <ListPreference
+            android:key="volume_dialog_stroke"
+            android:title="@string/volume_dialog_stroke_title"
+            android:dialogTitle="@string/volume_dialog_stroke_title"
+            android:entries="@array/volume_dialog_stroke_entries"
+            android:entryValues="@array/volume_dialog_stroke_values"
+            android:defaultValue="1" />
+
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="volume_dialog_stroke_color"
+            android:title="@string/volume_dialog_stroke_color_title"
+            android:defaultValue="0xffffffff" />
+
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+            android:key="volume_dialog_stroke_thickness"
+            android:title="@string/volume_dialog_stroke_thickness_title"
+            android:max="25"
+            settings:min="1"
+            settings:unitsLeft=""
+            settings:unitsRight="px"
+            android:persistent="false" />
 
         <SwitchPreference
             android:key="camera_sounds"
@@ -91,13 +113,13 @@
             android:summary="@string/swap_volume_buttons_summary"
             android:defaultValue="true"/>
 
-	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
+	    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_down_zen"
        	    android:title="@string/volbtn_down_zen_title"
             android:summary="@string/volbtn_down_zen_summary"
             android:defaultValue="false"/>   
 
-	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
+	    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_up_leave_zen"
        	    android:title="@string/volbtn_up_zen_title"
             android:summary="@string/volbtn_up_zen_summary"
