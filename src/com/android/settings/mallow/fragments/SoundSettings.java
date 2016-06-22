@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.os.SystemProperties;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -28,6 +29,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 
 import com.android.settings.R;
 import com.android.internal.logging.MetricsLogger;
@@ -49,9 +51,10 @@ public class SoundSettings extends SettingsPreferenceFragment
     private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String PREF_TRANSPARENT_VOLUME_DIALOG = "transparent_volume_dialog";
-	private static final String PREF_VOLUME_DIALOG_STROKE = "volume_dialog_stroke";
+    private static final String PREF_VOLUME_DIALOG_STROKE = "volume_dialog_stroke";
     private static final String PREF_VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
     private static final String PREF_VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
+    private static final String PREF_VOLUME_DIALOG_CORNER_RADIUS = "volume_dialog_corner_radius";
 
     private SwitchPreference mCameraSounds;
     private SwitchPreference mVolumeRockerWake;
@@ -59,9 +62,10 @@ public class SoundSettings extends SettingsPreferenceFragment
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
     private SeekBarPreferenceCHOS mVolumeDialogAlpha;
-	private ListPreference mVolumeDialogStroke;
+    private ListPreference mVolumeDialogStroke;
     private ColorPickerPreference mVolumeDialogStrokeColor;
     private SeekBarPreferenceCHOS mVolumeDialogStrokeThickness;
+    private SeekBarPreferenceCHOS mVolumeDialogCornerRadius;
 
     static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
@@ -85,8 +89,9 @@ public class SoundSettings extends SettingsPreferenceFragment
         // Volume button music control
         mVolBtnMusicCtrl = (SwitchPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
         mVolBtnMusicCtrl.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
+                Settings.System.VOLBTN_MUSIC_CONTROLS, 0) != 0);
         mVolBtnMusicCtrl.setOnPreferenceChangeListener(this);
+
         try {
             if (Settings.System.getInt(getContentResolver(),
                     Settings.System.VOLUME_ROCKER_WAKE) == 1) {
@@ -109,7 +114,7 @@ public class SoundSettings extends SettingsPreferenceFragment
         mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
         mAnnoyingNotifications.setOnPreferenceChangeListener(this);
 
-		// Volume dialog alpha
+	// Volume dialog alpha
         mVolumeDialogAlpha =
                 (SeekBarPreferenceCHOS) findPreference(PREF_TRANSPARENT_VOLUME_DIALOG);
         int volumeDialogAlpha = Settings.System.getInt(getContentResolver(),
@@ -117,9 +122,8 @@ public class SoundSettings extends SettingsPreferenceFragment
         mVolumeDialogAlpha.setValue(volumeDialogAlpha / 1);
         mVolumeDialogAlpha.setOnPreferenceChangeListener(this);
 
-		// Volume dialog stroke
-        mVolumeDialogStroke =
-                (ListPreference) findPreference(PREF_VOLUME_DIALOG_STROKE);
+	// Volume dialog stroke
+        mVolumeDialogStroke = (ListPreference) findPreference(PREF_VOLUME_DIALOG_STROKE);
         int volumeDialogStroke = Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.VOLUME_DIALOG_STROKE, 1, UserHandle.USER_CURRENT);
         mVolumeDialogStroke.setValue(String.valueOf(volumeDialogStroke));
@@ -143,6 +147,14 @@ public class SoundSettings extends SettingsPreferenceFragment
                 Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, 4);
         mVolumeDialogStrokeThickness.setValue(volumeDialogStrokeThickness / 1);
         mVolumeDialogStrokeThickness.setOnPreferenceChangeListener(this);
+
+	// Volume dialog corner radius
+        mVolumeDialogCornerRadius =
+                (SeekBarPreferenceCHOS) findPreference(PREF_VOLUME_DIALOG_CORNER_RADIUS);
+        int volumeDialogCornerRadius = Settings.System.getInt(getContentResolver(),
+                Settings.System.VOLUME_DIALOG_CORNER_RADIUS, 10);
+        mVolumeDialogCornerRadius.setValue(volumeDialogCornerRadius / 1);
+        mVolumeDialogCornerRadius.setOnPreferenceChangeListener(this);
 
         VolumeDialogSettingsDisabler(volumeDialogStroke);
     }
@@ -187,7 +199,7 @@ public class SoundSettings extends SettingsPreferenceFragment
                 Settings.System.putInt(getContentResolver(),
                     Settings.System.TRANSPARENT_VOLUME_DIALOG, alpha * 1);
             return true;
-		} else if (preference == mVolumeDialogStroke) {
+	} else if (preference == mVolumeDialogStroke) {
             int volumeDialogStroke = Integer.parseInt((String) objValue);
             int index = mVolumeDialogStroke.findIndexOfValue((String) objValue);
                 Settings.System.putIntForUser(getContentResolver(),
@@ -209,11 +221,16 @@ public class SoundSettings extends SettingsPreferenceFragment
                 Settings.System.putInt(getContentResolver(),
                     Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, val * 1);
             return true;
+	} else if (preference == mVolumeDialogCornerRadius) {
+            int val = (Integer) objValue;
+                Settings.System.putInt(getContentResolver(),
+                    Settings.System.VOLUME_DIALOG_CORNER_RADIUS, val * 1);
+            return true;
         }
         return false;
     }
 
-	private void VolumeDialogSettingsDisabler(int volumeDialogStroke) {
+    private void VolumeDialogSettingsDisabler(int volumeDialogStroke) {
         if (volumeDialogStroke == 0) {
             mVolumeDialogStrokeColor.setEnabled(false);
             mVolumeDialogStrokeThickness.setEnabled(false);
@@ -284,4 +301,3 @@ public class SoundSettings extends SettingsPreferenceFragment
         }
     }
 }
-

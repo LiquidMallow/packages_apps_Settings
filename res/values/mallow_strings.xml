@@ -127,6 +127,7 @@
     <string name="sidebar_category">Sidebar</string>
     <string name="slimdim_category">Slimdim</string>
     <string name="slim_recents_category">Slim recents</string>
+    <string name="sound_category">Sound</string>
     <string name="spacer_category">Spacer</string>
     <string name="status_bar_category">Status bar</string>
     <string name="style_category">Style</string>
@@ -1225,6 +1226,7 @@
 
     <!-- Volume steps -->
     <string name="volume_steps_title">Volume steps</string>
+    <string name="volume_steps_summary">Adjust level of phone or system sound</string>
     <string name="volume_steps_alarm_title">Volume steps: Alarm</string>
     <string name="volume_steps_dtmf_title">Volume steps: DTMF</string>
     <string name="volume_steps_music_title">Volume steps: Music</string>
@@ -1602,5 +1604,6 @@
     <string name="volume_dialog_stroke_custom">Custom color</string>
     <string name="volume_dialog_stroke_color_title">Volume dialog stroke color</string>
     <string name="volume_dialog_stroke_thickness_title">Volume dialog stroke thickness</string>
+    <string name="volume_dialog_corner_radius_title">Volume dialog corner radius</string>
 
 </resources>
