@@ -33,6 +33,7 @@ import com.android.settings.Utils;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.util.mallow.MallowUtils;
 import com.android.settings.SettingsPreferenceFragment;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import com.android.settings.mallow.preference.SeekBarPreferenceCHOS;
 
 import java.util.Locale;
@@ -50,6 +51,10 @@ public class NotificationDrawer extends SettingsPreferenceFragment
     private static final String PREF_TILE_ANIM_STYLE = "qs_tile_animation_style";
     private static final String PREF_TILE_ANIM_DURATION = "qs_tile_animation_duration";
     private static final String PREF_TILE_ANIM_INTERPOLATOR = "qs_tile_animation_interpolator";
+    private static final String PREF_QS_STROKE = "qs_stroke";
+    private static final String PREF_QS_STROKE_COLOR = "qs_stroke_color";
+    private static final String PREF_QS_STROKE_THICKNESS = "qs_stroke_thickness";
+    private static final String PREF_QS_CORNER_RADIUS = "qs_corner_radius";
 
     private ListPreference mQuickPulldown;
     private ListPreference mSmartPulldown;
@@ -60,6 +65,12 @@ public class NotificationDrawer extends SettingsPreferenceFragment
     private ListPreference mTileAnimationStyle;
     private ListPreference mTileAnimationDuration;
     private ListPreference mTileAnimationInterpolator;
+    private ListPreference mQSStroke;
+    private ColorPickerPreference mQSStrokeColor;
+    private SeekBarPreferenceCHOS mQSStrokeThickness;
+    private SeekBarPreferenceCHOS mQSCornerRadius;
+
+    static final int DEFAULT_QS_STROKE_COLOR = 0xFF59007F;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +79,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
+        // Quick pulldown
         mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
         if (!Utils.isPhone(getActivity())) {
             prefSet.removePreference(mQuickPulldown);
@@ -79,6 +91,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
             updateQuickPulldownSummary(statusQuickPulldown);
         }
 
+        // Smart pulldown
 		mSmartPulldown = (ListPreference) findPreference(PREF_SMART_PULLDOWN);
 		mSmartPulldown.setOnPreferenceChangeListener(this);
         int smartPulldown = Settings.System.getInt(getContentResolver(),
@@ -86,6 +99,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         mSmartPulldown.setValue(String.valueOf(smartPulldown));
         updateSmartPulldownSummary(smartPulldown);
 
+        // QS shade alpha
         mQSShadeAlpha =
              (SeekBarPreferenceCHOS) prefSet.findPreference(PREF_QS_TRANSPARENT_SHADE);
         int qSShadeAlpha = Settings.System.getInt(getContentResolver(),
@@ -93,6 +107,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         mQSShadeAlpha.setValue(qSShadeAlpha / 1);
         mQSShadeAlpha.setOnPreferenceChangeListener(this);
 
+        // QS header alpha
         mQSHeaderAlpha =
              (SeekBarPreferenceCHOS) prefSet.findPreference(PREF_QS_TRANSPARENT_HEADER);
         int qSHeaderAlpha = Settings.System.getInt(getContentResolver(),
@@ -100,6 +115,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         mQSHeaderAlpha.setValue(qSHeaderAlpha / 1);
         mQSHeaderAlpha.setOnPreferenceChangeListener(this);
 
+        // QS tile column number
         mNumColumns = (ListPreference) findPreference("sysui_qs_num_columns");
         int numColumns = Settings.Secure.getIntForUser(getContentResolver(),
              Settings.Secure.QS_NUM_TILE_COLUMNS, getDefaultNumColums(),
@@ -107,7 +123,8 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         mNumColumns.setValue(String.valueOf(numColumns));
         updateNumColumnsSummary(numColumns);
         mNumColumns.setOnPreferenceChangeListener(this);
-        
+
+        // Flashlight notification
         mFlashlightNotification = (SwitchPreference) findPreference(FLASHLIGHT_NOTIFICATION);
         mFlashlightNotification.setOnPreferenceChangeListener(this);
 
@@ -118,6 +135,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
                 (getContentResolver(), Settings.System.FLASHLIGHT_NOTIFICATION, 0) == 1));
         }
 
+        // QS animation style
         mTileAnimationStyle = (ListPreference) findPreference(PREF_TILE_ANIM_STYLE);
         int tileAnimationStyle = Settings.System.getIntForUser(
                 getContentResolver(), Settings.System.ANIM_TILE_STYLE, 0,
@@ -127,6 +145,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         updateAnimTileStyle(tileAnimationStyle);
         mTileAnimationStyle.setOnPreferenceChangeListener(this);
 
+        // QS animation duration
         mTileAnimationDuration = (ListPreference) findPreference(PREF_TILE_ANIM_DURATION);
         int tileAnimationDuration = Settings.System.getIntForUser(
                 getContentResolver(), Settings.System.ANIM_TILE_DURATION, 2000,
@@ -135,6 +154,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         updateTileAnimationDurationSummary(tileAnimationDuration);
         mTileAnimationDuration.setOnPreferenceChangeListener(this);
 
+        // QS animation interpolator
         mTileAnimationInterpolator = (ListPreference) findPreference(PREF_TILE_ANIM_INTERPOLATOR);
         int tileAnimationInterpolator = Settings.System.getIntForUser(
                 getContentResolver(), Settings.System.ANIM_TILE_INTERPOLATOR, 0,
@@ -142,6 +162,42 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         mTileAnimationInterpolator.setValue(String.valueOf(tileAnimationInterpolator));
         updateTileAnimationInterpolatorSummary(tileAnimationInterpolator);
         mTileAnimationInterpolator.setOnPreferenceChangeListener(this);
+
+        // QS stroke
+        mQSStroke = (ListPreference) findPreference(PREF_QS_STROKE);
+        int qSStroke = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.QS_STROKE, 1, UserHandle.USER_CURRENT);
+        mQSStroke.setValue(String.valueOf(qSStroke));
+        mQSStroke.setSummary(mQSStroke.getEntry());
+        mQSStroke.setOnPreferenceChangeListener(this);
+
+        // QS stroke color
+        mQSStrokeColor = 
+                (ColorPickerPreference) findPreference(PREF_QS_STROKE_COLOR);
+        mQSStrokeColor.setOnPreferenceChangeListener(this);
+        int qSIntColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_STROKE_COLOR, DEFAULT_QS_STROKE_COLOR);
+        String qSHexColor = String.format("#%08x", (0xFF80CBC4 & qSIntColor));
+        mQSStrokeColor.setSummary(qSHexColor);
+        mQSStrokeColor.setNewPreviewColor(qSIntColor);
+
+        // QS stroke thickness
+        mQSStrokeThickness =
+                (SeekBarPreferenceCHOS) findPreference(PREF_QS_STROKE_THICKNESS);
+        int qSStrokeThickness = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_STROKE_THICKNESS, 4);
+        mQSStrokeThickness.setValue(qSStrokeThickness / 1);
+        mQSStrokeThickness.setOnPreferenceChangeListener(this);
+
+        // QS corner radius
+        mQSCornerRadius =
+                (SeekBarPreferenceCHOS) findPreference(PREF_QS_CORNER_RADIUS);
+        int qSCornerRadius = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_CORNER_RADIUS, 5);
+        mQSCornerRadius.setValue(qSCornerRadius / 1);
+        mQSCornerRadius.setOnPreferenceChangeListener(this);
+
+        QSSettingsDisabler(qSStroke);
     }
 
     @Override
@@ -150,46 +206,51 @@ public class NotificationDrawer extends SettingsPreferenceFragment
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mQuickPulldown) {
             int statusQuickPulldown = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.QS_QUICK_PULLDOWN,
+                Settings.System.QS_QUICK_PULLDOWN,
                     statusQuickPulldown);
             updateQuickPulldownSummary(statusQuickPulldown);
             return true;
         } else if (preference == mSmartPulldown) {
             int smartPulldown = Integer.valueOf((String) objValue);
-                    Settings.System.putInt(getContentResolver(),
+                Settings.System.putInt(getContentResolver(),
                     Settings.System.QS_SMART_PULLDOWN, smartPulldown);
             updateSmartPulldownSummary(smartPulldown);
             return true;
         } else if  (preference == mFlashlightNotification) {
             boolean checked = ((SwitchPreference)preference).isChecked();
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.FLASHLIGHT_NOTIFICATION, checked ? 1:0);
+                Settings.System.FLASHLIGHT_NOTIFICATION, checked ? 1:0);
             return true;		
         } else if (preference == mQSShadeAlpha) {
             int alpha = (Integer) objValue;
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.QS_TRANSPARENT_SHADE, alpha * 1);
+                Settings.System.QS_TRANSPARENT_SHADE, alpha * 1);
             return true;
 		} else if (preference == mQSHeaderAlpha) {
             int alpha = (Integer) objValue;
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.QS_TRANSPARENT_HEADER, alpha * 1);
+                Settings.System.QS_TRANSPARENT_HEADER, alpha * 1);
             return true;			
         } else if (preference == mNumColumns) {
             int numColumns = Integer.valueOf((String) objValue);
             Settings.Secure.putIntForUser(getContentResolver(), 
-                    Settings.Secure.QS_NUM_TILE_COLUMNS,
+                Settings.Secure.QS_NUM_TILE_COLUMNS,
                     numColumns, UserHandle.USER_CURRENT);
             updateNumColumnsSummary(numColumns);
             return true;
         } else if (preference == mTileAnimationStyle) {
             int tileAnimationStyle = Integer.valueOf((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.ANIM_TILE_STYLE,
+                Settings.System.ANIM_TILE_STYLE,
                     tileAnimationStyle, UserHandle.USER_CURRENT);
             updateTileAnimationStyleSummary(tileAnimationStyle);
             updateAnimTileStyle(tileAnimationStyle);
@@ -197,19 +258,58 @@ public class NotificationDrawer extends SettingsPreferenceFragment
         } else if (preference == mTileAnimationDuration) {
             int tileAnimationDuration = Integer.valueOf((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.ANIM_TILE_DURATION,
+                Settings.System.ANIM_TILE_DURATION,
                     tileAnimationDuration, UserHandle.USER_CURRENT);
             updateTileAnimationDurationSummary(tileAnimationDuration);
             return true;
         } else if (preference == mTileAnimationInterpolator) {
             int tileAnimationInterpolator = Integer.valueOf((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.ANIM_TILE_INTERPOLATOR,
+                Settings.System.ANIM_TILE_INTERPOLATOR,
                     tileAnimationInterpolator, UserHandle.USER_CURRENT);
             updateTileAnimationInterpolatorSummary(tileAnimationInterpolator);
             return true;
+	    } else if (preference == mQSStroke) {
+            int qSStroke = Integer.parseInt((String) objValue);
+            int index = mQSStroke.findIndexOfValue((String) objValue);
+            Settings.System.putIntForUser(getContentResolver(), Settings.System.
+                QS_STROKE, qSStroke, UserHandle.USER_CURRENT);
+            mQSStroke.setSummary(mQSStroke.getEntries()[index]);
+            QSSettingsDisabler(qSStroke);
+            return true;
+        } else if (preference == mQSStrokeColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.QS_STROKE_COLOR, intHex);
+            return true;
+        } else if (preference == mQSStrokeThickness) {
+            int val = (Integer) objValue;
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.QS_STROKE_THICKNESS, val * 1);
+            return true;
+        } else if (preference == mQSCornerRadius) {
+            int val = (Integer) objValue;
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.QS_CORNER_RADIUS, val * 1);
+            return true;
         }
         return false;
+    }
+
+    private void QSSettingsDisabler(int qSStroke) {
+        if (qSStroke == 0) {
+            mQSStrokeColor.setEnabled(false);
+            mQSStrokeThickness.setEnabled(false);
+        } else if (qSStroke == 1) {
+            mQSStrokeColor.setEnabled(false);
+            mQSStrokeThickness.setEnabled(true);
+        } else {
+            mQSStrokeColor.setEnabled(true);
+            mQSStrokeThickness.setEnabled(true);
+        }
     }
 
     private void updateQuickPulldownSummary(int value) {
