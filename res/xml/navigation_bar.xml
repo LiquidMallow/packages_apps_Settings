@@ -19,42 +19,55 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
-        android:key="navbar_cat"
-        android:title="@string/interface_navbar_cat" >
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_buttons"
+        android:title="@string/buttons_category" >
 
         <SwitchPreference
-    	    android:key="enable_nav_bar"
+            android:key="enable_nav_bar"
             android:title="@string/navbar_enable_bar"
-    	    android:summary="@string/navbar_enable_bar_summary" />
-	
-	    <PreferenceScreen
+            android:summary="@string/navbar_enable_bar_summary" />
+
+        <PreferenceScreen
             android:key="navbar_button_settings"
             android:fragment="com.android.settings.slim.dslv.ActionListViewSettings"
-            android:title="@string/navbar_button_title">
+            android:title="@string/navbar_button_title"
+            android:summary="@string/navbar_button_summary">
                 <extra android:name="actionMode" android:value="0" />
                 <extra android:name="maxAllowedButtons" android:value="5" />
                 <extra android:name="disableDeleteLastEntry" android:value="true" />
-                <extra android:name="fragment" android:value="com.android.settings.mallow.NavbarButtonFragment" />
+                <extra android:name="fragment" android:value="com.android.settings.slim.fragments.NavbarButtonFragment" />
         </PreferenceScreen>
 
         <PreferenceScreen
-             android:key="navbar_style_dimen_settings"
-             android:fragment="com.android.settings.mallow.NavbarStyleDimenSettings"
-             android:title="@string/navbar_style_dimen_title" />
-	
-    </PreferenceCategory>
-    
-    <PreferenceCategory
-    	android:key="advanced_cat"
-        android:title="@string/advanced_settings">
+             android:key="navbar_style_dimen"
+             android:title="@string/navbar_style_dimen_title"
+             android:summary="@string/navbar_style_dimen_summary"
+             android:fragment="com.android.settings.mallow.navigation.NavbarStyleDimen" />
 
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <PreferenceScreen
+            android:key="navbar_button_style"
+            android:title="@string/nav_bar_button_style"
+            android:summary="@string/nav_bar_button_style_summary"
+            android:fragment="com.android.settings.mallow.navigation.NavbarButtonStyle" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+    	android:key="category_navbar"
+        android:title="@string/navbar_category" >
+
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="double_tap_sleep_navbar"
             android:title="@string/double_tap_sleep_nav_bar_title"
             android:summary="@string/double_tap_sleep_nav_bar_summary"
             android:defaultValue="false" />
-	    
-	    <com.android.settings.mallow.SystemSettingSwitchPreference
+
+	    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="navigation_bar_left"
             android:title="@string/navigation_bar_left_title"
             android:summary="@string/navigation_bar_left_summary"
@@ -62,9 +75,9 @@
 
         <SwitchPreference
             android:key="status_bar_ime_arrows"
-        	android:title="@string/show_ime_arrows_title"
-        	android:summary="@string/show_ime_arrows_summary"
-        	android:persistent="false" />
+            android:title="@string/show_ime_arrows_title"
+            android:summary="@string/show_ime_arrows_summary"
+            android:persistent="false" />
 
 	    <ListPreference
             android:key="pref_navbar_menu_display"
@@ -86,11 +99,11 @@
             android:summary="@string/navbar_can_move_summary" />
 
     </PreferenceCategory>
-    
+
     <PreferenceCategory
-        android:key="slimdim"
-        android:title="@string/navbar_slimdim_cat" >
-	
+        android:key="category_slimdim"
+        android:title="@string/slimdim_category" >
+
     	<SwitchPreference
             android:key="dim_nav_buttons"
             android:title="@string/dim_nav_buttons_title"
@@ -127,7 +140,7 @@
             android:dependency="dim_nav_buttons_animate"
             android:title="@string/dim_nav_buttons_animate_duration_title"
             android:summary="@string/dim_nav_buttons_animate_duration_summary" />
-	    
+
     </PreferenceCategory>	    
 
 </PreferenceScreen>

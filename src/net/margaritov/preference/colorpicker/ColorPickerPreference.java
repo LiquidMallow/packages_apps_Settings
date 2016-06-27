@@ -50,7 +50,7 @@ public class ColorPickerPreference extends DialogPreference implements
 
     int mDefaultValue = Color.BLACK;
     int mAndroidColor = 0x00000000;
-    int mDarkKatColor = mAndroidColor;
+    int mMallowColor = mAndroidColor;
     private int mValue = Color.BLACK;
     private float mDensity = 0;
     private boolean mAlphaSliderEnabled = false;
@@ -195,7 +195,7 @@ public class ColorPickerPreference extends DialogPreference implements
     protected Dialog createDialog() {
         final ColorPickerDialog pickerDialog = new ColorPickerDialog(
                 getContext(), R.style.Theme_ColorPickerDialog,
-                getValue(), mAndroidColor, mDarkKatColor);
+                getValue(), mAndroidColor, mMallowColor);
 
         if (mAlphaSliderEnabled) {
             pickerDialog.setAlphaSliderVisible(true);
@@ -214,9 +214,9 @@ public class ColorPickerPreference extends DialogPreference implements
         mAlphaSliderEnabled = enable;
     }
 
-    public void setDefaultColors(int androidColor, int darkkatColor) {
+    public void setDefaultColors(int androidColor, int mallowColor) {
         mAndroidColor = androidColor;
-        mDarkKatColor = darkkatColor;
+        mMallowColor = mallowColor;
     }
 
     /**

@@ -42,8 +42,8 @@
     <color name="ripple_material_dark">#4dffffff</color>
     <color name="black">@android:color/black</color>
     <color name="white">@android:color/white</color>
-    <color name="darkkat_blue_grey">#ff1b1f23</color>
-    <drawable name="darkkat_bg_blue_grey">@color/darkkat_blue_grey</drawable>
+    <color name="mallow_blue_grey">#ff1b1f23</color>
+    <drawable name="mallow_bg_blue_grey">@color/mallow_blue_grey</drawable>
     <color name="holo_blue_light">@android:color/holo_blue_light</color>
     <color name="material_deep_teal_500">@*android:color/material_deep_teal_500</color>
     <color name="material_indigo_500">#ff3f51b5</color>
@@ -129,15 +129,18 @@
     <color name="storage_volume_color_private4">#ffec407a</color> <!-- pink -->
     <color name="storage_volume_color_private5">#ffc0ca33</color> <!-- green -->
     <color name="eject_icon_tint_color">#8a000000</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
 
     <!-- Text Color for single button panel. See: app storage view -->
     <color name="single_button_panel_button_text_color">@color/text_color_white</color>
 
+    <!-- Battery history chart color -->
     <color name="battery_history_chart_color">?android:attr/colorControlActivated</color>
 
-    <!-- Power Usage Hard colors-->
+    <!-- Power Usage Hard color -->
     <color name="power_usage_ab_icon_tint">@android:color/white</color>
 
+    <!-- External tile icon tint color -->
     <color name="external_tile_icon_tint_color">?android:attr/colorAccent</color>
 
     <!-- Dashboard Category Title Background Color -->

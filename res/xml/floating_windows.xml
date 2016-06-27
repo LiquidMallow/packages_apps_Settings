@@ -19,10 +19,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- Multi Window Switch -->
+    <SwitchPreference
+        android:key="enable_multi_window"
+        android:title="@string/enable_multi_window"
+        android:summary="@string/enable_multi_window_summary"/>
+
     <PreferenceCategory
         android:title="@string/floating_master_switch">
 
-        <!-- Floating Windows Master Switch -->
+        <!-- Floating Windows Switch -->
         <SwitchPreference
             android:key="floating_window_mode"
             android:title="@string/floating_windows"
@@ -42,15 +48,15 @@
             android:dependency="floating_window_mode"
             android:defaultValue="false" />
 
-        <!-- QS Float Mode -->
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <!-- QS Float Mode Switch -->
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="qs_float_mode"
             android:title="@string/qs_float_mode"
             android:summary="@string/qs_float_mode_summary"
             android:dependency="floating_window_mode"
             android:defaultValue="false" />
 
-        <!-- Slim  and Pie Actions Floating Switch -->
+        <!-- Slim and Pie Actions Switch -->
         <SwitchPreference
             android:key="slim_action_floats"
             android:title="@string/slim_action_floats"

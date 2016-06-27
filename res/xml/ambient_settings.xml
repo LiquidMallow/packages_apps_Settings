@@ -34,7 +34,7 @@
         android:summaryOff="@string/doze_wakeup_doubletap_summary_off"
         android:persistent="false" />
 
-    <com.android.settings.mallow.SecureSettingSwitchPreference
+    <com.android.settings.mallow.preference.SecureSettingSwitchPreference
         android:key="doze_notification_invert_enabled"
         android:title="@string/doze_notification_color_invert_title"
         android:summaryOn="@string/doze_notification_color_invert_summary_on"
@@ -42,7 +42,7 @@
         android:defaultValue="true"
         android:dependency="doze" />
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
+    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
         android:key="doze_overwrite_value"
         android:title="@string/doze_overwrite_value_title"
         android:summary="@string/doze_overwrite_value_summary"
@@ -87,7 +87,7 @@
 
     </PreferenceCategory>
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
+    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
         android:key="doze_pulse_on_pickup"
         android:title="@string/doze_trigger_pickup_title"
         android:summaryOn="@string/doze_trigger_pickup_summary_on"
@@ -95,7 +95,7 @@
         android:defaultValue="true"
         android:dependency="doze_overwrite_value" />
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
+    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
         android:key="doze_pulse_on_notifications"
         android:title="@string/doze_trigger_notification_title"
         android:summaryOn="@string/doze_trigger_notification_summary_on"

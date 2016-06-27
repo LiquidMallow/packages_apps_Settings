@@ -18,45 +18,45 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="heads_up_user_enabled"
-        android:title="@string/heads_up_notifications"
-        android:summaryOn="@string/summary_heads_up_enabled"
-        android:summaryOff="@string/summary_heads_up_disabled"
-        android:defaultValue="true" />
-
-    <ListPreference
-        android:key="heads_up_time_out"
-        android:title="@string/heads_up_time_out_title"
-        android:entries="@array/heads_up_time_out_entries"
-        android:entryValues="@array/heads_up_time_out_values"
-        android:dependency="heads_up_user_enabled"
-        android:persistent="false" />
-
-    <ListPreference
-        android:key="heads_up_snooze_time"
-        android:title="@string/heads_up_snooze_title"
-        android:entries="@array/heads_up_snooze_entries"
-        android:entryValues="@array/heads_up_snooze_values"
-        android:dependency="heads_up_user_enabled"
-        android:persistent="false" />
-
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="heads_up_force_all"
-        android:title="@string/force_headsup_title"
-        android:summary="@string/force_headsup_summary"
-        android:dependency="heads_up_user_enabled"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
 
     <PreferenceCategory
-            android:title="@string/heads_up_dnd_title"
-            android:key="dnd_applications_list"
-            android:dependency="heads_up_user_enabled" >
-        <Preference
-            android:key="add_dnd_packages"
-            android:icon="@drawable/ic_menu_add_dark"
-            android:title="@string/add_heads_up_package"
-            android:summary="@string/add_heads_up_dnd_summary" />
+        android:key="category_popups"
+        android:title="@string/popups_category" >
+
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="heads_up_user_enabled"
+            android:title="@string/heads_up_notifications"
+            android:summaryOn="@string/summary_heads_up_enabled"
+            android:summaryOff="@string/summary_heads_up_disabled"
+            android:defaultValue="true" />
+
+        <ListPreference
+            android:key="heads_up_time_out"
+            android:title="@string/heads_up_time_out_title"
+            android:entries="@array/heads_up_time_out_entries"
+            android:entryValues="@array/heads_up_time_out_values"
+            android:dependency="heads_up_user_enabled"
+            android:persistent="false" />
+
+        <ListPreference
+            android:key="heads_up_snooze_time"
+            android:title="@string/heads_up_snooze_title"
+            android:entries="@array/heads_up_snooze_entries"
+            android:entryValues="@array/heads_up_snooze_values"
+            android:dependency="heads_up_user_enabled"
+            android:persistent="false" />
+
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="heads_up_force_all"
+            android:title="@string/force_headsup_title"
+            android:summary="@string/force_headsup_summary"
+            android:dependency="heads_up_user_enabled"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -68,6 +68,17 @@
             android:icon="@drawable/ic_menu_add_dark"
             android:title="@string/add_heads_up_package"
             android:summary="@string/add_heads_up_blacklist_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="@string/heads_up_dnd_title"
+            android:key="dnd_applications_list"
+            android:dependency="heads_up_user_enabled" >
+        <Preference
+            android:key="add_dnd_packages"
+            android:icon="@drawable/ic_menu_add_dark"
+            android:title="@string/add_heads_up_package"
+            android:summary="@string/add_heads_up_dnd_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory

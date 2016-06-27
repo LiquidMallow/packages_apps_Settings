@@ -13,21 +13,25 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <PreferenceScreen
+    android:title="@string/app_sidebar_title"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/app_sidebar_title" >
-
-    <PreferenceScreen
-        android:key="app_circlebar"
-        android:title="@string/circle_bar_title"
-        android:summary="@string/circle_bar_summary"
-        android:fragment="com.android.settings.mallow.AppCircleBar" />
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
-        android:key="category_sidebar_options"
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_sidebar"
         android:title="@string/sidebar_category" >
+
+        <PreferenceScreen
+            android:key="app_circle_bar"
+            android:title="@string/app_circle_bar_title"
+            android:summary="@string/app_circle_bar_summary"
+            android:fragment="com.android.settings.mallow.advanced.AppCirclebar" />
 
         <SwitchPreference
             android:key="sidebar_enable"
@@ -51,14 +55,14 @@
             android:defaultValue="0"
             android:dependency="sidebar_enable" />
 
-        <CheckBoxPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="sidebar_hide_labels"
             android:title="@string/app_sidebar_hide_labels_title"
             android:summary="@string/app_sidebar_hide_labels_summary"
             android:defaultValue="false"
             android:dependency="sidebar_enable" />
 
-        <com.android.settings.mallow.SeekBarPreferenceCHOS
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="sidebar_transparency"
             android:title="@string/app_sidebar_transparency_title"
             android:summary="@string/app_sidebar_transparency_summary"
@@ -72,10 +76,10 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="category_sidebar_trigger"
-        android:title="@string/trigger_category" >
+        android:key="category_triggers"
+        android:title="@string/triggers_category" >
 
-        <com.android.settings.mallow.SeekBarPreferenceCHOS
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="trigger_width"
             android:title="@string/trigger_width_title"
             android:summary="@string/trigger_width_summary"
@@ -86,7 +90,7 @@
             settings:unitsRight="px"
             android:dependency="sidebar_enable" />
 
-        <com.android.settings.mallow.SeekBarPreferenceCHOS
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="trigger_top"
             android:title="@string/trigger_top_title"
             android:summary="@string/trigger_top_summary"
@@ -97,7 +101,7 @@
             settings:unitsRight="%"
             android:dependency="sidebar_enable" />
 
-        <com.android.settings.mallow.SeekBarPreferenceCHOS
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="trigger_bottom"
             android:title="@string/trigger_bottom_title"
             android:summary="@string/trigger_bottom_summary"

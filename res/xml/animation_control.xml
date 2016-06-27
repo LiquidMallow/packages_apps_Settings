@@ -19,12 +19,12 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
-        android:key="system_animation"
-        android:title="@string/system_animation_title"
-        android:summary="@string/system_animation_summary"
-        android:fragment="com.android.settings.mallow.animation.AnimationControls" />
+        android:key="system_animations"
+        android:title="@string/system_animations_title"
+        android:summary="@string/system_animations_summary"
+        android:fragment="com.android.settings.mallow.display.SystemAnimations" />
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
+    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
         android:key="disable_transition_animations"
         android:title="@string/disable_animations"
         android:summary="@string/disable_animations_summary"

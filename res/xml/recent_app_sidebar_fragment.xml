@@ -17,7 +17,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
-        android:fragment="com.android.settings.mallow.RecentSidebar"
+        android:fragment="com.android.settings.mallow.ui.RecentSidebar"
         android:key="recent_app_sidebar"
         android:title="@string/recent_app_sidebar_style_title"
         android:summary="@string/recent_app_sidebar_style_summary" />

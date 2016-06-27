@@ -22,12 +22,12 @@
         android:key="category_wakeup_options"
         android:title="@string/wakeup_options_title" >
 
-	    <PreferenceScreen
+	<PreferenceScreen
             android:key="volume_steps"
             android:title="@string/volume_steps_title"
-            android:fragment="com.android.settings.mallow.VolumeSteps" />
+            android:fragment="com.android.settings.mallow.fragments.VolumeSteps" />
 
-    	<com.android.settings.mallow.SeekBarPreferenceCHOS
+    	<com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="transparent_volume_dialog"
             android:title="@string/volume_dialog_transparency"
             android:max="255"
@@ -41,11 +41,11 @@
             android:summary="@string/camera_sounds_summary"
             android:defaultValue="true" />
 
-        <com.android.settings.mallow.SystemSettingSwitchPreference
-        	android:key="screenshot_sound"
-        	android:title="@string/screenshot_sound_title"
-        	android:summary="@string/screenshot_sound_summary"
-        	android:defaultValue="true" />	
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="screenshot_sound"
+            android:title="@string/screenshot_sound_title"
+            android:summary="@string/screenshot_sound_summary"
+            android:defaultValue="true" />	
 
         <SwitchPreference
             android:key="volume_rocker_wake"
@@ -66,13 +66,13 @@
             android:persistent="false"
             android:defaultValue="true" />
 
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="headset_connect_player"
             android:title="@string/headset_connect_player_title"
             android:summary="@string/headset_connect_player_summary"
             android:defaultValue="false" />
 
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_keys_control_ring_stream"
             android:title="@string/volume_keys_control_ring_stream_title"
             android:summary="@string/volume_keys_control_ring_stream_summary" />
@@ -85,23 +85,23 @@
             android:entryValues="@array/less_notification_sounds_values"
             android:persistent="false" />
 
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="swap_volume_buttons"
             android:title="@string/swap_volume_buttons_title"
             android:summary="@string/swap_volume_buttons_summary"
             android:defaultValue="true"/>
 
-	    <com.android.settings.mallow.SystemSettingSwitchPreference
+	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_down_zen"
        	    android:title="@string/volbtn_down_zen_title"
             android:summary="@string/volbtn_down_zen_summary"
             android:defaultValue="false"/>   
 
-	    <com.android.settings.mallow.SystemSettingSwitchPreference
+	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_up_leave_zen"
        	    android:title="@string/volbtn_up_zen_title"
             android:summary="@string/volbtn_up_zen_summary"
-             android:defaultValue="false"/>    
+            android:defaultValue="false"/>    
 
     </PreferenceCategory>
 

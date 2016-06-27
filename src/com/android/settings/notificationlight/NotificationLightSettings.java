@@ -16,8 +16,6 @@
 
 package com.android.settings.notificationlight;
 
-import com.android.internal.logging.MetricsLogger;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
@@ -44,10 +42,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.settings.R;
+import com.android.internal.logging.MetricsLogger;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.mallow.SystemSettingSwitchPreference;
 import com.android.settings.cyanogenmod.PackageListAdapter;
 import com.android.settings.cyanogenmod.PackageListAdapter.PackageItem;
+import com.android.settings.mallow.preference.SystemSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.HashMap;

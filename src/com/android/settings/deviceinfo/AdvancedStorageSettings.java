@@ -34,11 +34,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.internal.logging.MetricsLogger;
-
-import com.android.settings.mallow.SystemSettingSwitchPreference;
 import com.android.settings.R;
+import com.android.internal.logging.MetricsLogger;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.mallow.preference.SystemSettingSwitchPreference;
 
 public class AdvancedStorageSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {

@@ -92,7 +92,7 @@
             android:id="@+id/device_personalization"
             android:title="@string/header_category_personalization" >
 
-	    <!-- Kernel auditor -->
+        <!-- Kernel auditor -->
         <dashboard-tile
                 android:id="@+id/kernel_auditor"
                 android:icon="@drawable/ic_settings_performance"
@@ -107,7 +107,7 @@
         <dashboard-tile
                 android:id="@+id/mallow_tweaks"
                 android:title="@string/mallow_tweaks_title"
-                android:fragment="com.android.settings.mallow.MallowTweaks"
+                android:fragment="com.android.settings.mallow.fragments.MallowTweaks"
                 android:icon="@drawable/ic_settings_mallow"
                 />
 
@@ -122,7 +122,7 @@
             </intent>
         </dashboard-tile>
 
-	    <!-- Viper4Android -->
+        <!-- Viper audio -->
         <dashboard-tile
             android:id="@+id/viper_settings"
             android:title="@string/viper_audio_title"

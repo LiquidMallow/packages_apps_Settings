@@ -45,7 +45,7 @@
         <PreferenceScreen
                 android:key="changelog"
                 android:title="@string/changelog_mallow_title"
-                android:fragment="com.android.settings.mallow.Changelog" />
+                android:fragment="com.android.settings.mallow.util.Changelog" />
 
         <!-- Device hardware model -->
         <Preference android:key="device_model"

@@ -172,7 +172,7 @@
 		<category android:name="android.intent.category.DEFAULT" />
 		</intent-filter>
 		<meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-		android:value="com.android.settings.mallow.DisplayRotation" />
+		android:value="com.android.settings.mallow.display.DisplayRotation" />
 		<meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/display_settings" />
 	</activity>
@@ -1940,7 +1940,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.FloatingWindows" />
+                android:value="com.android.settings.mallow.display.FloatingWindows" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/display_settings" />
         </activity>
@@ -1954,7 +1954,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.HeadsUp" />
+                android:value="com.android.settings.mallow.ui.HeadsUp" />
         </activity>
 
 	    <!-- Navigation bar -->
@@ -1966,7 +1966,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.NavigationBar" />
+                android:value="com.android.settings.mallow.navigation.NavigationBar" />
         </activity>
 
 	    <!-- Pie control -->
@@ -1978,7 +1978,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.PieControl" />
+                android:value="com.android.settings.mallow.advanced.PieControl" />
         </activity>
 
         <!-- Development settings -->
@@ -2594,7 +2594,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.AmbientSettings" />
+                android:value="com.android.settings.mallow.display.AmbientSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/display_settings" />
         </activity>
@@ -2605,7 +2605,7 @@
                   android:exported="true"
                   android:targetActivity="Settings$AmbientDisplayActivity">
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.AmbientSettings" />
+                android:value="com.android.settings.mallow.display.AmbientSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/display_settings" />
         </activity-alias>
@@ -2696,12 +2696,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.mallow.MallowTweaks" />
+                android:value="com.android.settings.mallow.fragments.MallowTweaks" />
         </activity>
 
         <!-- Mallow activities-->
-        <activity android:name=".mallow.MallowTweaks" />
-        <activity android:name=".mallow.recentshidden.HAFRAppListActivity" />
+        <activity android:name=".mallow.fragments.MallowTweaks" />
+        <activity android:name=".mallow.ui.recents.HAFRAppListActivity" />
         <activity android:name=".notificationlight.BatteryLightSettings" />
         <activity android:name=".notificationlight.NotificationLightSettings" />
         <activity android:name=".gestureanywhere.GestureAnywhereBuilderActivity" />

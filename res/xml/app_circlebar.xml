@@ -13,55 +13,65 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <PreferenceScreen
+    android:title="@string/app_circle_bar_title"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/category_app_circle_bar_title" >
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="enable_app_circle_bar"
-        android:title="@string/app_circle_bar_title"
-        android:summary="@string/app_circle_bar_summary" />
+    <PreferenceCategory
+        android:key="category_circlebar"
+        android:title="@string/circlebar_category" >
 
-    <com.android.settings.mallow.util.AppMultiSelectListPreference
-        android:key="app_circle_bar_included_apps"
-        android:persistent="false"
-        android:title="@string/app_circle_bar_included_apps_title"
-        android:summary="@string/app_circle_bar_included_apps_summary"
-        android:dependency="enable_app_circle_bar" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="enable_app_circle_bar"
+            android:title="@string/app_circle_bar_enable" />
 
-    <com.android.settings.mallow.SeekBarPreferenceCHOS
-        android:key="trigger_width"
-        android:title="@string/trigger_width_title"
-        android:summary="@string/trigger_width_summary"
-        android:defaultValue="4"
-        android:max="64"
-        settings:min="4"
-        settings:unitsLeft=""
-        settings:unitsRight="px"
-        android:dependency="enable_app_circle_bar" />
+        <com.android.settings.mallow.util.AppMultiSelectListPreference
+            android:key="app_circle_bar_included_apps"
+            android:title="@string/app_circle_bar_included_apps_title"
+            android:summary="@string/app_circle_bar_included_apps_summary"
+            android:dependency="enable_app_circle_bar" 
+            android:persistent="false" />
 
-    <com.android.settings.mallow.SeekBarPreferenceCHOS
-        android:key="trigger_top"
-        android:title="@string/trigger_top_title"
-        android:summary="@string/trigger_top_summary"
-        android:defaultValue="0"
-        android:max="99"
-        settings:min="0"
-        settings:unitsLeft=""
-        settings:unitsRight="%"
-        android:dependency="enable_app_circle_bar" />
+    </PreferenceCategory>
 
-    <com.android.settings.mallow.SeekBarPreferenceCHOS
-        android:key="trigger_bottom"
-        android:title="@string/trigger_bottom_title"
-        android:summary="@string/trigger_bottom_summary"
-        android:defaultValue="100"
-        android:max="100"
-        settings:min="1"
-        settings:unitsLeft=""
-        settings:unitsRight="%"
-        android:dependency="enable_app_circle_bar" />
+    <PreferenceCategory
+        android:key="category_triggers"
+        android:title="@string/triggers_category" >
+
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+            android:key="trigger_width"
+            android:title="@string/trigger_width_title"
+            android:summary="@string/trigger_width_summary"
+            android:defaultValue="4"
+            android:max="64"
+            settings:min="4"
+            settings:unitsLeft=""
+            settings:unitsRight="px"
+            android:dependency="enable_app_circle_bar" />
+
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+            android:key="trigger_top"
+            android:title="@string/trigger_top_title"
+            android:summary="@string/trigger_top_summary"
+            android:defaultValue="0"
+            android:max="99"
+            settings:min="0"
+            settings:unitsLeft=""
+            settings:unitsRight="%"
+            android:dependency="enable_app_circle_bar" />
+
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+            android:key="trigger_bottom"
+            android:title="@string/trigger_bottom_title"
+            android:summary="@string/trigger_bottom_summary"
+            android:defaultValue="100"
+            android:max="100"
+            settings:min="1"
+            settings:unitsLeft=""
+            settings:unitsRight="%"
+            android:dependency="enable_app_circle_bar" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

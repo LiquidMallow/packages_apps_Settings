@@ -61,7 +61,7 @@ public class ColorPickerDialog extends Dialog implements
     private static final String FAVORITE_COLOR_BUTTON  =
             "favorite_color_button_";
 
-    private static final int PALETTE_DARKKAT     = 0;
+    private static final int PALETTE_MALLOW      = 0;
     private static final int PALETTE_MATERIAL    = 1;
     private static final int PALETTE_RGB         = 2;
 
@@ -96,7 +96,7 @@ public class ColorPickerDialog extends Dialog implements
 
     private final int mInitialColor;
     private final int mAndroidColor;
-    private final int mDarkKatColor;
+    private final int mMallowColor;
     private int mNewColorValue;
 
     private final ContentResolver mResolver;
@@ -109,12 +109,12 @@ public class ColorPickerDialog extends Dialog implements
     }
 
     public ColorPickerDialog(Context context, int theme, int initialColor,
-            int androidColor, int darkkatColor) {
+            int androidColor, int mallowColor) {
         super(context, theme);
 
         mInitialColor = initialColor;
         mAndroidColor = androidColor;
-        mDarkKatColor = darkkatColor;
+        mMallowColor = mallowColor;
         mResolver = context.getContentResolver();
         mResources = context.getResources();
         setUp();
@@ -150,7 +150,7 @@ public class ColorPickerDialog extends Dialog implements
         mPaletteSwitchButton.setOnClickListener(this);
 
         mResetButton = (ImageButton) mColorPickerView.findViewById(R.id.reset);
-        if (mAndroidColor != 0x00000000 && mDarkKatColor != 0x00000000) {
+        if (mAndroidColor != 0x00000000 && mMallowColor != 0x00000000) {
             mResetButton.setOnClickListener(this);
         } else {
             mResetButton.setVisibility(View.GONE);
@@ -416,8 +416,8 @@ public class ColorPickerDialog extends Dialog implements
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        if (item.getItemId() == R.id.palette_darkkat) {
-            setPalette(PALETTE_DARKKAT);
+        if (item.getItemId() == R.id.palette_mallow) {
+            setPalette(PALETTE_MALLOW);
             mColorTransitionAnimator.start();
             return true;
         } else if (item.getItemId() == R.id.palette_material) {
@@ -431,8 +431,8 @@ public class ColorPickerDialog extends Dialog implements
         } else if (item.getItemId() == R.id.reset_android) {
             mColorPicker.setColor(mAndroidColor, true);
             return true;
-        } else if (item.getItemId() == R.id.reset_darkkat) {
-            mColorPicker.setColor(mDarkKatColor, true);
+        } else if (item.getItemId() == R.id.reset_mallow) {
+            mColorPicker.setColor(mMallowColor, true);
             return true;
         }
         return false;
@@ -511,7 +511,7 @@ public class ColorPickerDialog extends Dialog implements
     }
 
     private void updatePaletteColorButtonsTitle() {
-        int resId = R.string.palette_darkkat_title;
+        int resId = R.string.palette_mallow_title;
         if (getPalette() == PALETTE_MATERIAL) {
             resId = R.string.palette_material_title;
         } else if (getPalette() == PALETTE_RGB) {
@@ -522,7 +522,7 @@ public class ColorPickerDialog extends Dialog implements
 
     private int getPalette() {
         return Settings.System.getInt(mResolver,
-                Settings.System.COLOR_PICKER_PALETTE, PALETTE_DARKKAT);
+                Settings.System.COLOR_PICKER_PALETTE, PALETTE_MALLOW);
     }
 
     private void setPalette(int palette) {
@@ -532,8 +532,8 @@ public class ColorPickerDialog extends Dialog implements
 
     private int getPaletteColorButtonColor(int pallete, int index) {
         TypedArray ta;
-        if (pallete == PALETTE_DARKKAT) {
-            ta = mResources.obtainTypedArray(R.array.color_picker_darkkat_palette);
+        if (pallete == PALETTE_MALLOW) {
+            ta = mResources.obtainTypedArray(R.array.color_picker_mallow_palette);
         } else if (pallete == PALETTE_MATERIAL) {
             ta = mResources.obtainTypedArray(R.array.color_picker_material_palette);
         } else {

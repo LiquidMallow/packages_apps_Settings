@@ -28,11 +28,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsLogger;
+import com.android.settings.SettingsPreferenceFragment;
 
-public class LockscreenShortcutsFragment extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener {
+public class LockscreenShortcutsFragment extends SettingsPreferenceFragment
+        implements OnPreferenceChangeListener {
 
     private static final String PREF_LOCKSCREEN_SHORTCUTS_LAUNCH_TYPE =
             "lockscreen_shortcuts_launch_type";
@@ -40,23 +40,20 @@ public class LockscreenShortcutsFragment extends SettingsPreferenceFragment impl
     private ListPreference mLockscreenShortcutsLaunchType;
 
     @Override
-    protected int getMetricsCategory() {
-        return MetricsLogger.DONT_TRACK_ME_BRO;
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addPreferencesFromResource(R.xml.lockscreen_shortcuts_fragment);
-
-        PreferenceScreen prefSet = getPreferenceScreen();
 
         mLockscreenShortcutsLaunchType = (ListPreference) findPreference(
                 PREF_LOCKSCREEN_SHORTCUTS_LAUNCH_TYPE);
         mLockscreenShortcutsLaunchType.setOnPreferenceChangeListener(this);
 
         setHasOptionsMenu(false);
+    }
+
+    @Override
+    protected int getMetricsCategory() {
+        return MetricsLogger.DONT_TRACK_ME_BRO;
     }
 
     @Override

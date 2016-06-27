@@ -129,13 +129,13 @@ import com.android.settings.wifi.SavedAccessPointsWifiSettings;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
 
-import com.android.settings.mallow.HeadsUp;
-import com.android.settings.mallow.PieControl;
-import com.android.settings.mallow.MallowTweaks;
-import com.android.settings.mallow.NavigationBar;
-import com.android.settings.mallow.DisplayRotation;
-import com.android.settings.mallow.FloatingWindows;
-import com.android.settings.mallow.AmbientSettings;
+import com.android.settings.mallow.advanced.PieControl;
+import com.android.settings.mallow.fragments.MallowTweaks;
+import com.android.settings.mallow.display.AmbientSettings;
+import com.android.settings.mallow.display.DisplayRotation;
+import com.android.settings.mallow.display.FloatingWindows;
+import com.android.settings.mallow.navigation.NavigationBar;
+import com.android.settings.mallow.ui.HeadsUp;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

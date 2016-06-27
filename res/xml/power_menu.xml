@@ -18,93 +18,110 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <com.android.settings.mallow.SecureSettingSwitchPreference
-        android:key="advanced_reboot"
-        android:title="@string/advanced_reboot_title"
-        android:summary="@string/advanced_reboot_summary"
-        android:defaultValue="true" />
+    <PreferenceCategory
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="lockscreen_enable_power_menu"
-        android:title="@string/lockscreen_enable_power_menu_title"
-        android:summary="@string/lockscreen_enable_power_menu_summary"
-        android:defaultValue="true" />
+    <PreferenceCategory
+        android:key="category_advanced"
+        android:title="@string/advanced_category" >
 
-    <com.android.settings.mallow.SeekBarPreferenceCHOS
-        android:key="transparent_power_menu"
-        android:title="@string/power_menu_transparency"
-        android:max="100"
-        settings:min="0"
-        settings:unitsLeft=""
-        settings:unitsRight="%"
-        android:persistent="false" />
+        <com.android.settings.mallow.preference.SecureSettingSwitchPreference
+            android:key="advanced_reboot"
+            android:title="@string/advanced_reboot_title"
+            android:summary="@string/advanced_reboot_summary"
+            android:defaultValue="true" />
 
-    <SwitchPreference
-        android:key="reboot"
-        android:title="@string/power_menu_reboot_title"
-        android:defaultValue="true" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="lockscreen_enable_power_menu"
+            android:title="@string/lockscreen_enable_power_menu_title"
+            android:summary="@string/lockscreen_enable_power_menu_summary"
+            android:defaultValue="true" />
 
-    <com.android.settings.mallow.SecureSettingSwitchPreference
-        android:key="advanced_reboot_oneclick"
-        android:title="@string/advanced_reboot_oneclick"
-        android:summary="@string/advanced_reboot_oneclick_summary"
-        android:dependency="reboot"
-        android:defaultValue="false" />
+        <com.android.settings.mallow.preference.SecureSettingSwitchPreference
+            android:key="advanced_reboot_oneclick"
+            android:title="@string/advanced_reboot_oneclick"
+            android:summary="@string/advanced_reboot_oneclick_summary"
+            android:dependency="reboot"
+            android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="screenshot"
-        android:title="@string/power_menu_screenshot_title"
-        android:defaultValue="false" />
+        <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+            android:key="transparent_power_menu"
+            android:title="@string/power_menu_transparency"
+            android:max="100"
+            settings:min="0"
+            settings:unitsLeft=""
+            settings:unitsRight="%"
+            android:persistent="false" />
 
-    <com.android.settings.widget.NumberPickerPreference
-        android:key="screenshot_delay"
-        android:title="@string/powermenu_screenshot_delay_title"
-        android:dependency="screenshot" />
+    </PreferenceCategory>
 
-    <SwitchPreference
-        android:key="screenrecord"
-        android:title="@string/power_menu_screenrecord_title"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:key="category_power_menu"
+        android:title="@string/power_menu_category" >
 
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="power_menu_onthego_enabled"
-        android:title="@string/power_menu_onthego_title"
-        android:defaultValue="false" />
+        <SwitchPreference
+            android:key="airplane"
+            android:title="@string/power_menu_airplane_title"
+            android:defaultValue="true" />
 
-    <SlimSeekBarPreference
-        android:key="on_the_go_alpha"
-        android:title="@string/onthego_alpha_title"
-        android:summary="@string/onthego_alpha_summary"
-        android:dependency="power_menu_onthego_enabled" />
+        <SwitchPreference
+            android:key="lockdown"
+            android:title="@string/power_menu_lockdown_title"
+            android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="airplane"
-        android:title="@string/power_menu_airplane_title"
-        android:defaultValue="true" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="power_menu_onthego_enabled"
+            android:title="@string/power_menu_onthego_title"
+            android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="torch"
-        android:title="@string/powermenu_torch"
-        android:defaultValue="true" />
+        <SlimSeekBarPreference
+            android:key="on_the_go_alpha"
+            android:title="@string/onthego_alpha_title"
+            android:summary="@string/onthego_alpha_summary"
+            android:dependency="power_menu_onthego_enabled" />
 
-    <SwitchPreference
-        android:key="users"
-        android:title="@string/power_menu_users_title"
-        android:defaultValue="false" />
+        <SwitchPreference
+            android:key="reboot"
+            android:title="@string/power_menu_reboot_title"
+            android:defaultValue="true" />
 
-    <SwitchPreference
-        android:key="settings"
-        android:title="@string/power_menu_settings_title"
-        android:defaultValue="false" />
+        <SwitchPreference
+            android:key="screenrecord"
+            android:title="@string/power_menu_screenrecord_title"
+            android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="lockdown"
-        android:title="@string/power_menu_lockdown_title"
-        android:defaultValue="false" />
+        <SwitchPreference
+            android:key="screenshot"
+            android:title="@string/power_menu_screenshot_title"
+            android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="silent"
-        android:title="@string/power_menu_sound_title"
-        android:defaultValue="true" />
+        <com.android.settings.widget.NumberPickerPreference
+            android:key="screenshot_delay"
+            android:title="@string/powermenu_screenshot_delay_title"
+            android:dependency="screenshot" />
+
+        <SwitchPreference
+            android:key="settings"
+            android:title="@string/power_menu_settings_title"
+            android:defaultValue="false" />
+
+        <SwitchPreference
+            android:key="silent"
+            android:title="@string/power_menu_sound_title"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="torch"
+            android:title="@string/powermenu_torch"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="users"
+            android:title="@string/power_menu_users_title"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

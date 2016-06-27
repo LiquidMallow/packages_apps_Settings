@@ -23,7 +23,7 @@
         android:key="keyboard_input"
         android:title="@string/keyboard_input_title"
         android:summary="@string/keyboard_input_summary"
-        android:fragment="com.android.settings.mallow.KeyboardInput" />
+        android:fragment="com.android.settings.mallow.fragments.KeyboardInput" />
 
     <PreferenceScreen
             android:key="phone_language"

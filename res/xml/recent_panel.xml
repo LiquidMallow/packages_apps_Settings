@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2015 The SlimRoms Project
+<!-- Copyright (C) 2015 MallowRom
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,83 +13,81 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<PreferenceScreen
+    android:title="@string/recent_panel_title"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-        android:title="@string/slim_recents_title">
+    <PreferenceCategory
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
 
-        <SwitchPreference
-            android:key="use_slim_recents"
-            android:title="@string/use_slim_recents_title"
-            android:defaultValue="false" />
-
-        <SwitchPreference
-            android:key="only_show_running_tasks"
-            android:title="@string/show_running_tasks_title"
-            android:defaultValue="false" />
-
-        <SlimSeekBarPreference
-            android:key="max_apps"
-            android:title="@string/recents_max_apps_title" />
+    <PreferenceCategory
+        android:key="category_advanced"
+        android:title="@string/advanced_category" >
 
         <PreferenceScreen
-                android:dependency="use_slim_recents"
-                android:key="recent_app_sidebar_content"
-                android:fragment="com.android.settings.slim.dslv.ActionListViewSettings"
-                android:title="@string/recent_app_sidebar_title"
-                android:summary="@string/recent_app_sidebar_summary">
-            <extra android:name="actionMode" android:value="7" />
-            <extra android:name="maxAllowedActions" android:value="-1" />
-            <extra android:name="useAppPickerOnly" android:value="true" />
-            <extra android:name="fragment" android:value="com.android.settings.slim.fragments.RecentAppSidebarFragment" />
-        </PreferenceScreen>
+            android:key="slim_recents"
+            android:title="@string/slim_recents_title"
+            android:summary="@string/slim_recents_summary"
+            android:fragment="com.android.settings.mallow.ui.SlimRecents" />
 
         <ListPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_expanded_mode"
-            android:entries="@array/recent_panel_expanded_mode_entries"
-            android:entryValues="@array/recent_panel_expanded_mode_values"
-            android:title="@string/recent_panel_expanded_mode_title"
-            android:summary="@string/recent_panel_expanded_mode_summary"
+            android:key="immersive_recents"
+            android:title="@string/immersive_recents_title"
+       	    android:entries="@array/immersive_recents_entries"
+            android:entryValues="@array/immersive_recents_values"
             android:persistent="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_recent_panel"
+        android:title="@string/recent_panel_category" >
 
         <SwitchPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_lefty_mode"
-            android:title="@string/recent_panel_lefty_mode_title"
-            android:summary="@string/recent_panel_lefty_mode_summary"
-            android:persistent="false" />
+            android:key="show_clear_all_recents"
+            android:title="@string/show_clear_all_recents_button_title"
+            android:summary="@string/show_clear_all_recents_button_summary"
+            android:defaultValue="true" />
 
-        <SwitchPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_show_topmost"
-            android:title="@string/recent_panel_show_topmost_title"
-            android:summary="@string/recent_panel_show_topmost_summary"
-            android:persistent="false" />
+        <ListPreference
+            android:key="recents_clear_all_location"
+            android:title="@string/recents_clear_all_location_title"
+            android:entries="@array/recents_clear_all_location_entries"
+            android:entryValues="@array/recents_clear_all_location_values"
+            android:defaultValue="3"
+            android:dependency="show_clear_all_recents" />
 
-        <SlimSeekBarPreference
-            android:key="recent_panel_scale"
-            android:title="@string/recent_panel_scale_title" />
+	    <PreferenceScreen
+             android:key="hide_app_from_recents"
+             android:title="@string/hide_apps_from_recents_title"
+             android:summary="@string/hide_apps_from_recents_summary" >
+             <intent android:action="android.intent.action.MAIN"
+                 android:targetPackage="com.android.settings"
+                 android:targetClass="com.android.settings.mallow.ui.recents.HAFRAppListActivity" />
+         </PreferenceScreen>
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_bg_color"
-            android:title="@string/recent_panel_bg_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="recents_clear_all_dismiss_all"
+            android:title="@string/recents_clear_all_dismiss_all_title"
+            android:summary="@string/recents_clear_all_dismiss_all_summary"
+            android:defaultValue="true"
+            android:dependency="show_clear_all_recents" />
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_card_bg_color"
-            android:title="@string/recent_card_bg_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="recents_search_bar"
+            android:title="@string/recents_show_searchbar"
+            android:summary="@string/recents_show_searchbar_summary"
+            android:defaultValue="true" />
 
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_card_text_color"
-            android:title="@string/recent_card_text_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="systemui_recents_mem_display"
+            android:title="@string/recents_show_membar_title"
+            android:summary="@string/recents_show_membar_summary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

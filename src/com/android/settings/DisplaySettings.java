@@ -76,9 +76,9 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.android.settings.mallow.DisplayRotation;
-import com.android.settings.mallow.SeekBarPreference;
+import com.android.settings.mallow.display.DisplayRotation;
 import com.android.settings.dashboard.DashboardContainerView;
+import com.android.settings.mallow.preference.SeekBarPreference;
 
 import java.util.ArrayList;
 import java.util.List;

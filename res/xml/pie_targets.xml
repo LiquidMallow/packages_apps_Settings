@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright (C) 2010-2014 ParanoidAndroid Project
+     Copyright (C) 2015 Fusion & Cyanidel Project (PIE2.0 - Ported & modified)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/pa_pie_targets_title">
+
+    <SwitchPreference
+        android:key="pa_pie_menu"
+        android:title="@string/pa_pie_menu_title"
+        android:summary="@string/pa_pie_menu_summary" />
+
+    <SwitchPreference
+        android:key="pa_pie_killtask"
+        android:title="@string/pa_pie_killtask_title"
+        android:summary="@string/pa_pie_killtask_summary" />
+
+    <SwitchPreference
+        android:key="pa_pie_lastapp"
+        android:title="@string/pa_pie_lastapp_title"
+        android:summary="@string/pa_pie_lastapp_summary" />
+
+    <SwitchPreference
+        android:key="pa_pie_screenshot"
+        android:title="@string/pa_pie_screenshot_title"
+        android:summary="@string/pa_pie_screenshot_summary" />
+
+</PreferenceScreen>

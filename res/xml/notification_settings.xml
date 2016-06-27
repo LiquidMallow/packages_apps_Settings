@@ -24,7 +24,7 @@
         android:key="sound_settings"
         android:title="@string/sound_settings_title"
         android:summary="@string/sound_settings_summary"
-        android:fragment="com.android.settings.mallow.SoundSettings" />
+        android:fragment="com.android.settings.mallow.fragments.SoundSettings" />
 
     <PreferenceCategory
         android:key="sound"
@@ -62,7 +62,7 @@
                 android:title="@string/notification_volume_option_title" />
 
         <!-- Increasing ring -->
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
                 android:key="increasing_ring"
                 android:title="@string/increasing_ring_volume_option_title" />
 
@@ -121,7 +121,7 @@
         android:title="@string/notification_section_header" >
 
         <!-- Audio ducking -->
-        <com.android.settings.mallow.SecureSettingSwitchPreference
+        <com.android.settings.mallow.preference.SecureSettingSwitchPreference
             android:key="zen_disable_ducking_during_media_playback"
             android:title="@string/interruptions_ignore_while_media_title"
             android:summary="@string/interruptions_ignore_while_media_summary"

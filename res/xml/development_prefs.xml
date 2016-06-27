@@ -194,7 +194,7 @@
             android:title="@string/pointer_location"
             android:summary="@string/pointer_location_summary"/>
             
-        <com.android.settings.mallow.SystemSettingSwitchPreference
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="edge_service_for_gestures"
             android:title="@string/edge_gesture_service_title"
             android:summary="@string/edge_gesture_service_summary"
@@ -375,7 +375,7 @@
     <PreferenceCategory android:key="debug_LAN_category"
             android:title="@string/debug_LAN_category">
 
-        <com.android.settings.mallow.HostnamePreference
+        <com.android.settings.mallow.util.HostnamePreference
             android:key="device_hostname"
             android:title="@string/device_hostname"
             android:dialogTitle="@string/device_hostname"

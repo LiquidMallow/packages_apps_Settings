@@ -15,28 +15,45 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/pie_control_title">
-
-    <com.android.settings.mallow.SystemSettingSwitchPreference
-        android:key="pa_pie_state"
-        android:title="@string/pa_pie_control_enable_title"
-        android:defaultValue="false" />
-
-    <PreferenceScreen
-        android:key="pa_pie_targets"
-        android:title="@string/pa_pie_targets_title"
-        android:fragment="com.android.settings.paranoid.PieTargets"
-        android:dependency="pa_pie_state" />
-
-    <PreferenceScreen
-        android:key="pa_pie_color"
-        android:title="@string/pa_pie_color_title"
-        android:fragment="com.android.settings.paranoid.PieColor"
-        android:dependency="pa_pie_state" />
+<PreferenceScreen
+    android:title="@string/pie_control_title"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
-        android:title="@string/pa_pie_style_title">
+        android:key="category_spacer"
+        android:title="@string/spacer_category" >
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_buttons"
+        android:title="@string/buttons_category" >
+
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="pa_pie_state"
+            android:title="@string/pa_pie_control_enable_title"
+            android:summary="@string/pa_pie_control_enable_summary"
+            android:defaultValue="false" />
+
+        <PreferenceScreen
+            android:key="pa_pie_targets"
+            android:title="@string/pa_pie_targets_title"
+            android:summary="@string/pa_pie_targets_summary"
+            android:fragment="com.android.settings.mallow.advanced.PieTargets"
+            android:dependency="pa_pie_state" />
+
+        <PreferenceScreen
+            android:key="pa_pie_color"
+            android:title="@string/pa_pie_color_title"
+            android:summary="@string/pa_pie_color_summary"
+            android:fragment="com.android.settings.mallow.advanced.PieColor"
+            android:dependency="pa_pie_state" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_style"
+        android:title="@string/style_category" >
 
         <ListPreference
             android:key="pa_pie_size"
