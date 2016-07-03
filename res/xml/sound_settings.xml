@@ -53,13 +53,13 @@
             android:summary="@string/swap_volume_buttons_summary"
             android:defaultValue="true"/>
 
-	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
+	    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_down_zen"
        	    android:title="@string/volbtn_down_zen_title"
             android:summary="@string/volbtn_down_zen_summary"
             android:defaultValue="false"/>
 
-	<com.android.settings.mallow.preference.SystemSettingSwitchPreference
+	    <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="volume_up_leave_zen"
        	    android:title="@string/volbtn_up_zen_title"
             android:summary="@string/volbtn_up_zen_summary"
@@ -71,6 +71,10 @@
         android:key="category_interface"
         android:title="@string/interface_category" >
 
+        <SlimSeekBarPreference
+            android:key="volume_dialog_timeout"
+            android:title="@string/volume_dialog_timeout_title" />
+
     	<com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="transparent_volume_dialog"
             android:title="@string/volume_dialog_transparency"
@@ -79,7 +83,7 @@
             settings:unitsLeft=""
             settings:unitsRight="" />
 
-	<ListPreference
+	    <ListPreference
             android:key="volume_dialog_stroke"
             android:title="@string/volume_dialog_stroke_title"
             android:dialogTitle="@string/volume_dialog_stroke_title"
@@ -101,7 +105,7 @@
             settings:unitsRight="px"
             android:persistent="false" />
 
-	<com.android.settings.mallow.preference.SeekBarPreferenceCHOS
+	    <com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="volume_dialog_corner_radius"
             android:title="@string/volume_dialog_corner_radius_title"
             android:max="50"

@@ -16,6 +16,7 @@
 
 package com.android.settings.mallow.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -28,6 +29,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
+import android.preference.SlimSeekBarPreference;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
@@ -55,6 +57,7 @@ public class SoundSettings extends SettingsPreferenceFragment
     private static final String PREF_VOLUME_DIALOG_STROKE_COLOR = "volume_dialog_stroke_color";
     private static final String PREF_VOLUME_DIALOG_STROKE_THICKNESS = "volume_dialog_stroke_thickness";
     private static final String PREF_VOLUME_DIALOG_CORNER_RADIUS = "volume_dialog_corner_radius";
+    private static final String KEY_VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
     private SwitchPreference mCameraSounds;
     private SwitchPreference mVolumeRockerWake;
@@ -66,6 +69,7 @@ public class SoundSettings extends SettingsPreferenceFragment
     private ColorPickerPreference mVolumeDialogStrokeColor;
     private SeekBarPreferenceCHOS mVolumeDialogStrokeThickness;
     private SeekBarPreferenceCHOS mVolumeDialogCornerRadius;
+    private SlimSeekBarPreference mVolumeDialogTimeout;
 
     static final int DEFAULT_VOLUME_DIALOG_STROKE_COLOR = 0xFF80CBC4;
 
@@ -114,7 +118,7 @@ public class SoundSettings extends SettingsPreferenceFragment
         mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
         mAnnoyingNotifications.setOnPreferenceChangeListener(this);
 
-	// Volume dialog alpha
+	    // Volume dialog alpha
         mVolumeDialogAlpha =
                 (SeekBarPreferenceCHOS) findPreference(PREF_TRANSPARENT_VOLUME_DIALOG);
         int volumeDialogAlpha = Settings.System.getInt(getContentResolver(),
@@ -122,7 +126,7 @@ public class SoundSettings extends SettingsPreferenceFragment
         mVolumeDialogAlpha.setValue(volumeDialogAlpha / 1);
         mVolumeDialogAlpha.setOnPreferenceChangeListener(this);
 
-	// Volume dialog stroke
+	    // Volume dialog stroke
         mVolumeDialogStroke = (ListPreference) findPreference(PREF_VOLUME_DIALOG_STROKE);
         int volumeDialogStroke = Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.VOLUME_DIALOG_STROKE, 1, UserHandle.USER_CURRENT);
@@ -148,7 +152,7 @@ public class SoundSettings extends SettingsPreferenceFragment
         mVolumeDialogStrokeThickness.setValue(volumeDialogStrokeThickness / 1);
         mVolumeDialogStrokeThickness.setOnPreferenceChangeListener(this);
 
-	// Volume dialog corner radius
+	    // Volume dialog corner radius
         mVolumeDialogCornerRadius =
                 (SeekBarPreferenceCHOS) findPreference(PREF_VOLUME_DIALOG_CORNER_RADIUS);
         int volumeDialogCornerRadius = Settings.System.getInt(getContentResolver(),
@@ -157,11 +161,27 @@ public class SoundSettings extends SettingsPreferenceFragment
         mVolumeDialogCornerRadius.setOnPreferenceChangeListener(this);
 
         VolumeDialogSettingsDisabler(volumeDialogStroke);
+
+        // Volume dialog timeout seekbar
+        mVolumeDialogTimeout = 
+                (SlimSeekBarPreference) findPreference(KEY_VOLUME_DIALOG_TIMEOUT);
+        mVolumeDialogTimeout.setDefault(3000);
+        mVolumeDialogTimeout.isMilliseconds(true);
+        mVolumeDialogTimeout.setInterval(1);
+        mVolumeDialogTimeout.minimumValue(100);
+        mVolumeDialogTimeout.multiplyValue(100);
+        mVolumeDialogTimeout.setOnPreferenceChangeListener(this);
     }
 
     @Override
     protected int getMetricsCategory() {
         return MetricsLogger.DONT_TRACK_ME_BRO;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateState();
     }
 
     @Override
@@ -199,7 +219,7 @@ public class SoundSettings extends SettingsPreferenceFragment
                 Settings.System.putInt(getContentResolver(),
                     Settings.System.TRANSPARENT_VOLUME_DIALOG, alpha * 1);
             return true;
-	} else if (preference == mVolumeDialogStroke) {
+	    } else if (preference == mVolumeDialogStroke) {
             int volumeDialogStroke = Integer.parseInt((String) objValue);
             int index = mVolumeDialogStroke.findIndexOfValue((String) objValue);
                 Settings.System.putIntForUser(getContentResolver(),
@@ -221,11 +241,15 @@ public class SoundSettings extends SettingsPreferenceFragment
                 Settings.System.putInt(getContentResolver(),
                     Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, val * 1);
             return true;
-	} else if (preference == mVolumeDialogCornerRadius) {
+	    } else if (preference == mVolumeDialogCornerRadius) {
             int val = (Integer) objValue;
                 Settings.System.putInt(getContentResolver(),
                     Settings.System.VOLUME_DIALOG_CORNER_RADIUS, val * 1);
             return true;
+        } else if (preference == mVolumeDialogTimeout) {
+            int volumeDialogTimeout = Integer.valueOf((String) objValue);
+                 Settings.System.putInt(getContentResolver(),
+                     Settings.System.VOLUME_DIALOG_TIMEOUT, volumeDialogTimeout);
         }
         return false;
     }
@@ -240,6 +264,17 @@ public class SoundSettings extends SettingsPreferenceFragment
         } else {
             mVolumeDialogStrokeColor.setEnabled(true);
             mVolumeDialogStrokeThickness.setEnabled(true);
+        }
+    }
+
+    private void updateState() {
+        final Activity activity = getActivity();
+
+        if (mVolumeDialogTimeout != null) {
+            final int volumeDialogTimeout = Settings.System.getInt(getContentResolver(),
+                    Settings.System.VOLUME_DIALOG_TIMEOUT, 3000);
+            // minimum 100 is 1 interval of the 100 multiplier
+            mVolumeDialogTimeout.setInitValue((volumeDialogTimeout / 100) - 1);
         }
     }
 

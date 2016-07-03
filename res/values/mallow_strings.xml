@@ -1615,4 +1615,7 @@
     <string name="qs_stroke_thickness_title">QS shade stroke thickness</string>
     <string name="qs_corner_radius_title">QS shade corner radius</string>
 
+    <!-- Volume dialog timeout -->
+    <string name="volume_dialog_timeout_title">Volume dialog timeout</string>
+
 </resources>
