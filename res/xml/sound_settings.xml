@@ -75,6 +75,12 @@
             android:key="volume_dialog_timeout"
             android:title="@string/volume_dialog_timeout_title" />
 
+        <com.android.settings.mallow.preference.SystemSettingSwitchPreference
+            android:key="volume_dialog_force_expanded"
+            android:title="@string/volume_dialog_force_expanded_title"
+            android:summary="@string/volume_dialog_force_expanded_summary"
+            android:defaultValue="false" />
+
     	<com.android.settings.mallow.preference.SeekBarPreferenceCHOS
             android:key="transparent_volume_dialog"
             android:title="@string/volume_dialog_transparency"

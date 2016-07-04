@@ -1618,4 +1618,8 @@
     <!-- Volume dialog timeout -->
     <string name="volume_dialog_timeout_title">Volume dialog timeout</string>
 
+    <!-- Volume dialog expanded -->
+    <string name="volume_dialog_force_expanded_title">Volume panel expanded</string>
+    <string name="volume_dialog_force_expanded_summary">Force volume panel to always appear expanded</string>
+
 </resources>
