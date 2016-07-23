@@ -80,7 +80,7 @@
             android:key="recents_search_bar"
             android:title="@string/recents_show_searchbar"
             android:summary="@string/recents_show_searchbar_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <com.android.settings.mallow.preference.SystemSettingSwitchPreference
             android:key="systemui_recents_mem_display"
