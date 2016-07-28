@@ -773,11 +773,6 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
                 Settings.Secure.ADB_NOTIFY, 1);
     }
 
-    private void resetAdbNotifyOptions() {
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.ADB_NOTIFY, 1);
-    }
-
     private void updateHdcpValues() {
         ListPreference hdcpChecking = (ListPreference) findPreference(HDCP_CHECKING_KEY);
         if (hdcpChecking != null) {
